@@ -171,6 +171,9 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
        <property name="maximum">
         <number>1440</number>
        </property>
@@ -257,5 +260,42 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>addAlertButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>add_alert()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>335</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>-9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteAlertButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delete_selected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>436</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>229</x>
+     <y>-10</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>add_alert()</slot>
+  <slot>delete_selected()</slot>
+ </slots>
 </ui>
