@@ -28,6 +28,11 @@ class MyWindow(QtWidgets.QMainWindow):
                                           str(self.frequencyDurationSpinbox.value()) + ' mins)')
         self.numAlerts += 1
 
+    def closeEvent(self, event):
+        for t in self.alerts:
+            t.timer.cancel()
+        event.accept()  # let the window close
+
 
 if __name__ == '__main__':
     import sys
