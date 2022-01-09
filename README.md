@@ -10,7 +10,7 @@ There are 4 categories, "Recurring Alerts", "Timed Alerts", "Restrictions", and 
 "Extras" are extras for the program (currently only a COVID case counter)
 
 Setup:<br>
-***Make sure Chromium driver is updated to the version 97.0 or later.*** To do so:
+ - ***Make sure Chromium driver is updated to the version 97.0 or later.*** To do so:
     1. Open Google Chrome
     2. Click on the 3 dots in the top-right corner of the screen
     3. In the help subsection, click on the `About Google Chrome`
