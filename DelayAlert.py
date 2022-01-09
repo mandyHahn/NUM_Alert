@@ -18,6 +18,6 @@ class DelayAlert:
 
     # Perform the event and create a new timer
     def performEvent(self):
-        showToast(self.alert.title, self.alert.message, self.alert.notificationDuration)
-        self.timer = threading.Timer(self.timeBetweenInterval, self.performEvent)
-        self.timer.start()
+        showToast(self.alert.title, self.alert.message, self.alert.notificationDuration)  # Display the alert
+        self.timer = threading.Timer(self.timeBetweenInterval, self.performEvent)  # Create a new timer to go off again in a set period of time
+        self.timer.start()  # Start the new timer
