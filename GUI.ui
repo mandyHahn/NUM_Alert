@@ -48,7 +48,7 @@
      <number>-1</number>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -77,12 +77,12 @@
        </property>
        <item>
         <property name="text">
-         <string>Water</string>
+         <string>Drink Water</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Food</string>
+         <string>Get a Snack</string>
         </property>
        </item>
        <item>
@@ -92,12 +92,17 @@
        </item>
        <item>
         <property name="text">
-         <string>Walk</string>
+         <string>Take a Walk</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Break</string>
+         <string>Take a Break</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rest Your Eyes</string>
         </property>
        </item>
        <item>
@@ -329,12 +334,12 @@
        </property>
        <item>
         <property name="text">
-         <string>Water</string>
+         <string>Drink Water</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Food</string>
+         <string>Get a Snack</string>
         </property>
        </item>
        <item>
@@ -344,12 +349,17 @@
        </item>
        <item>
         <property name="text">
-         <string>Walk</string>
+         <string>Take a Walk</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Break</string>
+         <string>Take a Break</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rest Your Eyes</string>
         </property>
        </item>
        <item>
@@ -620,19 +630,19 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>22</number>
+        <number>3</number>
        </property>
        <property name="insertPolicy">
         <enum>QComboBox::InsertAtBottom</enum>
        </property>
        <item>
         <property name="text">
-         <string>USA</string>
+         <string>Argentina</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>India</string>
+         <string>Belgium</string>
         </property>
        </item>
        <item>
@@ -642,47 +652,12 @@
        </item>
        <item>
         <property name="text">
-         <string>UK</string>
+         <string>Canada</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>France</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Russia</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Turkey</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Germany</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Italy</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Spain</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Argentina</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Iran</string>
+         <string>Chile</string>
         </property>
        </item>
        <item>
@@ -692,27 +667,57 @@
        </item>
        <item>
         <property name="text">
+         <string>Czechia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>France</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Germany</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>India</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Indonesia</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Poland</string>
+         <string>Iran</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Iraq</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Malaysia</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Mexico</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Ukraine</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>South Africa</string>
         </property>
        </item>
        <item>
@@ -727,37 +732,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Malaysia</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Czechia</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Canada</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Thailand</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Belgium</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Iraq</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Vietnam</string>
+         <string>Poland</string>
         </property>
        </item>
        <item>
@@ -767,12 +742,47 @@
        </item>
        <item>
         <property name="text">
-         <string>Chile</string>
+         <string>Russia</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Japan</string>
+         <string>South Africa</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Spain</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Thailand</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Turkey</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>UK</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ukraine</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>USA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vietnam</string>
         </property>
        </item>
       </widget>
@@ -861,6 +871,32 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>alertTypeCombobox</tabstop>
+  <tabstop>frequencyDurationSpinbox</tabstop>
+  <tabstop>customMessageField</tabstop>
+  <tabstop>notificationDurationSpinbox</tabstop>
+  <tabstop>addDelayAlertButton</tabstop>
+  <tabstop>currentDelayAlertsList</tabstop>
+  <tabstop>deleteDelayAlertButton</tabstop>
+  <tabstop>alertTypeCombobox_2</tabstop>
+  <tabstop>selectTimeBox</tabstop>
+  <tabstop>customMessageField_2</tabstop>
+  <tabstop>notificationDurationSpinbox_2</tabstop>
+  <tabstop>addTimedAlertButton</tabstop>
+  <tabstop>currentTimedAlertsList</tabstop>
+  <tabstop>deleteTimedAlertButton</tabstop>
+  <tabstop>applicationsList</tabstop>
+  <tabstop>addToBannedButton</tabstop>
+  <tabstop>bannedApplicationsList</tabstop>
+  <tabstop>unbanSelectedButton</tabstop>
+  <tabstop>focusModeCheckbox</tabstop>
+  <tabstop>covidAlertsRadiobutton</tabstop>
+  <tabstop>covidNotifyFrequencySpinbox</tabstop>
+  <tabstop>covidCountryCombobox</tabstop>
+  <tabstop>covidNotificationDurationSpinbox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

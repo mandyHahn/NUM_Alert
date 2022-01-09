@@ -47,43 +47,50 @@ class MainWindow(QtWidgets.QMainWindow):
     # index - the index of the alert to be deleted
     # totalNum - the total number of alerts in both lists (for error checking)
     def delete_alert(self, timerList, guiList, index, totalNum):
-        if index < 0 or index >= totalNum:
+        if index < 0 or index >= totalNum:              # throw an error if the index is out of bounds
             raise IndexError("no selected element")
 
-        guiList.takeItem(index)
-        timerList[index].timer.cancel()
-        del timerList[index]
+        guiList.takeItem(index)                         # otherwise remove the alert from the guiList
+        timerList[index].timer.cancel()                 # stop the timer that runs the alert
+        del timerList[index]                            # remove the alert from the timerList
 
+    # delete_selected_timedAlert: run by the GUI to delete the user's selected timed alert
     def delete_selected_timedAlert(self):
-        try:
+        try:        # catch the error delete_alert throws, if it occurs
             self.delete_alert(self.timedAlerts, self.currentTimedAlertsList, self.selectedTimedRow, self.numTimedAlerts)
             self.numTimedAlerts -= 1
-            if self.selectedTimedRow == self.numTimedAlerts:
+
+            if self.selectedTimedRow == self.numTimedAlerts:    # if the deleted alert was the last one, decrement the selected row
                 self.selectedTimedRow -= 1
 
         except IndexError:
-            print("indexError timed")
+            pass    # do nothing
 
+    # delete_selected_delayAlert: run by the GUI to delete the user's selected delay alert
     def delete_selected_delayAlert(self):
-        try:
+        try:        # catch the error delete_alert throws, if it occurs
             self.delete_alert(self.delayAlerts, self.currentDelayAlertsList, self.selectedDelayRow, self.numDelayAlerts)
             self.numDelayAlerts -= 1
-            if self.selectedDelayRow == self.numDelayAlerts:
+            if self.selectedDelayRow == self.numDelayAlerts:    # if the deleted alert was the last one, decrement the selected row
                 self.selectedDelayRow -= 1
 
         except IndexError:
-            print("indexError delay")
+            pass    # do nothing
 
+    # add_delayAlert: collects the user's inputted data to create a new delay alert
     def add_delayAlert(self):
-        self.delayAlerts.append(
-            DelayAlert(self.frequencyDurationSpinbox.value()*60, self.notificationDurationSpinbox.value(),
-                       self.alertTypeCombobox.currentText(), self.customMessageField.text() + " "))
+        # first create a new DelayAlert object and add it to our local list
+        self.delayAlerts.append(DelayAlert(self.frequencyDurationSpinbox.value()*60,
+                                           self.notificationDurationSpinbox.value(),
+                                           self.alertTypeCombobox.currentText(),
+                                           self.customMessageField.text() + " "))
 
+        # then add a description for the created alert to the gui
         self.currentDelayAlertsList.insertItem(self.numDelayAlerts, self.alertTypeCombobox.currentText() + ' - "' +
                                                self.customMessageField.text() + '" (' +
                                                str(self.frequencyDurationSpinbox.value()) + ' mins)')
+
         self.numDelayAlerts += 1
-        self.currentDelayAlertsList.setCurrentRow(-1)
 
     # timeParser - Parses military time and returns it as regular time
     # hours - The hour to parse (0-23)
@@ -99,7 +106,6 @@ class MainWindow(QtWidgets.QMainWindow):
         return returnStr  # Return the string
 
     def add_timedAlert(self):
-        # print("here" + self.selectTimeBox.time().toPyDateTime() )
         enteredHour = self.selectTimeBox.time().hour()
         enteredMinute = self.selectTimeBox.time().minute()
         currDate = datetime.datetime.now()
@@ -115,7 +121,6 @@ class MainWindow(QtWidgets.QMainWindow):
                                                self.customMessageField_2.text() + '" (' +
                                                self.timeParser(enteredHour, enteredMinute) + ')')
         self.numTimedAlerts += 1
-        self.currentTimedAlertsList.setCurrentRow(-1)
 
     def add_to_banned(self):
         numRows = self.applicationsList.count()
@@ -185,7 +190,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def covid_toggle(self):
         if self.covidAlertsRadiobutton.isChecked():
             self.covidTimer = COVIDAlert(self.covidNotificationDurationSpinbox.value(),
-                                         self.covidNotifyFrequencySpinbox.value()) # TODO change to hours
+                                         self.covidNotifyFrequencySpinbox.value()*60) 
             self.covidTimer.createTimer(self.covidCountryCombobox.currentText())
         else:
             self.covidTimer.timer.cancel()
