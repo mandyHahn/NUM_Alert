@@ -1,4 +1,4 @@
-Contributors: Uladzislau Kaparykha, Amanda Hahn, Nicholas Waller
+Contributors: Uladzislau Kaparykha, Amanda Hahn, Nicholas Waller<br>
 Hackathon Team Name: N.U.M
 
 General Purpose:
@@ -27,7 +27,7 @@ Setup:<br>
   
   Or use your native Python IDE and run the script there (Via either Shift+F10 or pressing the `Run` Button)
 
-Using Each Aspect:
+**Using Each Aspect:**<br>
 Recurring Alerts
  - Alert type: The type of alert. If the type of alert wanted is not on the list, press "custom".
  - Frequency Duration: The amount of time, in minutes, that the notification will appear.
@@ -39,12 +39,12 @@ Timed Alerts
  - Alert type, custom message and notification duration are all the same as above.
  - Time to Occur: The time at which the notification will occur. It only checks the second the minute starts (eg checks at 12:00:00, but won't at 12:00:54)
  Add alert and delete alert are the same as above.
-Restrictions
+*Restrictions*
  - Click on the program that you want to be restricted.
  - Click "add to banned"
  - Click on an in the "banned applications" text box and then "unban selected" to unban the item
  - Once all banned applications are ready, check the "focus mode" box to close the applications every minute.
-Extras
+*Extras*
  - COVID-19 Alerts
    - Click on the "Receive COVID case alerts" radio button
    - "Notify every" - How often the notifications will appear
@@ -54,7 +54,7 @@ Extras
  All information comes from https://www.worldometers.info/coronavirus/
 
 
-Limitations/Restrictions:
+**Limitations/Restrictions:**
 Windows 10 Exclusive due to how the notifications are processed.
 Notification duration is limited not only by the input, but by what the limit is in the user settings.
  - In Windows 10, this can be changed in settings -> Ease of Access -> Show notifications for
