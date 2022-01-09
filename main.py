@@ -4,16 +4,14 @@ from TimedAlert import TimedAlert
 import datetime
 
 
-class MyWindow(QtWidgets.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        super(MyWindow, self).__init__()
+        super(MainWindow, self).__init__()
         uic.loadUi('GUI.ui', self)
-        MyWindow.delayAlerts = []
-        MyWindow.timedAlerts = []
-        MyWindow.numDelayAlerts = 0
-        MyWindow.numTimedAlerts = 0
-
-
+        MainWindow.delayAlerts = []
+        MainWindow.timedAlerts = []
+        MainWindow.numDelayAlerts = 0
+        MainWindow.numTimedAlerts = 0
 
     def delete_alert(self, timerList, guiList, index):
         timerList[index].timer.cancel()
@@ -59,16 +57,6 @@ class MyWindow(QtWidgets.QMainWindow):
         convertedDate = datetime.datetime(currDate.year, currDate.month, currDate.day,
                                           self.selectTimeBox.time().hour(), self.selectTimeBox.time().minute())
 
-        # print("HERE1")
-        # alertDate = currDate.date() if (currDate.hour <= enteredHour and currDate.minute < enteredMinute) else (currDate.date().today() + datetime.timedelta(days=1))
-        # #alertTime = datetime.time(enteredHour, enteredMinute)
-        # print("HERE2")
-        #
-        #
-        # convertedDate = datetime.datetime(alertDate.year, alertDate.month, alertDate.day, enteredHour, enteredMinute)
-        # print("HERE3")
-        #
-        # print(convertedDate)
 
         self.timedAlerts.append(
             TimedAlert(self.notificationDurationSpinbox_2.value(), self.alertTypeCombobox_2.currentText(),
@@ -78,10 +66,6 @@ class MyWindow(QtWidgets.QMainWindow):
                                                self.customMessageField_2.text() + '" (' +
                                                self.timeParser(enteredHour, enteredMinute) + ')')
         self.numTimedAlerts += 1
-
-        # currDate = datetime.datetime.now()
-        # date = datetime.datetime(currDate.year, currDate.month, currDate.day, 14, 51)
-        # timeAlert = TimedAlert(20, "Test", "test", date)
 
     def closeEvent(self, event):
         for t in self.alerts:
@@ -93,33 +77,7 @@ if __name__ == '__main__':
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    window = MyWindow()
-    # window.tableWidget.setRowCount(4)
-
-    # for x in range(40):
-    #     window.currentAlertsList.insertItem(x, "test" + str(x))
-    #     window.alerts.append(x)
-    #     # item = QtWidgets.QTableWidgetItem()
-    #     # item.setText("blah blah")
-    #     # window.tableWidget.setItem(1, x, item)
-    # print(window.alerts)
-    # window.delete_alert(10)
-    # print(window.alerts)
-
-    # _translate = QtCore.QCoreApplication.translate
-    # item = QtWidgets.QTableWidgetItem()
-    # item = window.tableWidget.item(1, 0)
-    # item.setText(_translate("Form", "Parwiz"))
-    # item = window.tableWidget.item(1, 1)
-    # item.setText(_translate("Form", "par@gmail.com"))
-    # item = window.tableWidget.item(1, 2)
-    # item.setText(_translate("Form", "5656565"))
+    window = MainWindow()
     window.show()
 
     sys.exit(app.exec_())
-    # def cancelTimers():
-    #     for t in window.alerts:
-    #         t.timer.cancel()
-    #
-    #
-    # atexit.register(cancelTimers)
