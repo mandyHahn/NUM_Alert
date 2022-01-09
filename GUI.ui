@@ -48,7 +48,7 @@
      <number>-1</number>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -589,7 +589,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>10</y>
         <width>401</width>
         <height>171</height>
        </rect>
@@ -602,12 +602,12 @@
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>171</width>
+         <width>371</width>
          <height>17</height>
         </rect>
        </property>
        <property name="text">
-        <string>Recieve COVID case alerts</string>
+        <string>Recieve COVID case alerts (may take a second to load data once clicked)</string>
        </property>
       </widget>
       <widget class="QComboBox" name="covidCountryCombobox">
@@ -1071,6 +1071,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>covidNotifyFrequencySpinbox</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_notify_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>124</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-5</x>
+     <y>157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>covidNotificationDurationSpinbox</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_notify_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add_delayAlert()</slot>
@@ -1086,5 +1118,6 @@
   <slot>set_selected_restriction()</slot>
   <slot>covid_toggle()</slot>
   <slot>covid_country_changed()</slot>
+  <slot>covid_notify_change()</slot>
  </slots>
 </ui>
