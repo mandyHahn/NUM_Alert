@@ -72,7 +72,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def add_delayAlert(self):
         self.delayAlerts.append(
-            DelayAlert(self.frequencyDurationSpinbox.value(), self.notificationDurationSpinbox.value(),
+            DelayAlert(self.frequencyDurationSpinbox.value()*60, self.notificationDurationSpinbox.value(),
                        self.alertTypeCombobox.currentText(), self.customMessageField.text() + " "))
 
         self.currentDelayAlertsList.insertItem(self.numDelayAlerts, self.alertTypeCombobox.currentText() + ' - "' +
@@ -157,11 +157,13 @@ class MainWindow(QtWidgets.QMainWindow):
             t.timer.cancel()
         for t in self.timedAlerts:
             t.timer.cancel()
+        if self.focusModeCheckbox.isChecked():
+            self.restrictTime.timer.cancel()
+
         event.accept()  # let the window close
 
     def set_selected_delayAlert(self):
         self.selectedDelayRow = self.currentDelayAlertsList.currentRow()
-        print(self.selectedDelayRow)
 
     def set_selected_timedAlert(self):
         self.selectedTimedRow = self.currentTimedAlertsList.currentRow()
@@ -172,24 +174,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def set_selected_restriction(self):
         self.selectedRestrictRow = self.bannedApplicationsList.currentRow()
 
-
     def focus_toggle(self):
         if self.focusModeCheckbox.isChecked():
-
             self.restrictTime = RestrictTimer(60, self.exeList)
-            print("here as well")
-            # self.
-            # print(self.toKill)
-            # print("Here1")
-            # for i in self.toKill:  # not mandatory, but performance improvement
-            #     self.exeList += self.exeDict[i]       # given toKill list, merge matching dict entries, O-notation is smaller
-            # print("Here2")
-            # print(self.exeList)
-
-
-            # self.schedEvent = self.schedule.enter(60, 1, kill_unwanted, (self.schedule, self.exeList ))
-            # self.schedule.run()
-
         else:
             self.restrictTime.timer.cancel()
 
