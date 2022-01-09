@@ -16,12 +16,13 @@ Setup:
     3. In the help subsection, click on the `About Google Chrome`
     4. If the version is not 97.0 onward, click the update button.
 <br>
-Install following library dependencies via `pip install ___`, where ___ are the libraries mentioned below:<br>
- - PyQt5
- - selenium
- - psutil
- - winapps
- - win10toast
+Install following library dependencies via `pip install ___`, where ___ are the libraries mentioned below:
+<br>
+  - PyQt5
+  - selenium
+  - psutil
+  - winapps
+  - win10toast
   To launch the app (assuming you are in the directory containing all the files)
   > py main.py
 
