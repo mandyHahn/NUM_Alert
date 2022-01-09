@@ -22,8 +22,12 @@ class TimedAlert:
             self.timer.start()
 
     def checkTimer(self):
+        self.timer = threading.Timer(60, self.checkTimer)
+        self.timer.start()
         tempTime = datetime.datetime.now()
         if self.time.hour == tempTime.hour and self.time.minute == tempTime.minute:
             showToast(self.alert.title, self.alert.message, self.alert.notificationDuration)
-        self.timer = threading.Timer(60, self.checkTimer)
-        self.timer.start()
+            self.timer.cancel()
+            self.timer = threading.Timer(86400, self.checkTimer)  # Repeat once daily
+            self.timer.start()
+

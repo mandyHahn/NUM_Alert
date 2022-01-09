@@ -10,3 +10,4 @@ def showToast(title, message, duration):
     else:
         t = threading.Timer(1, showToast, args=[title, message, duration])
         t.start()
+
