@@ -587,7 +587,7 @@
        <number>4</number>
       </property>
       <property name="text">
-       <string>Focus Mode (checks if banned applications are open)</string>
+       <string>Focus Mode (checks if banned applications are open every minute)</string>
       </property>
      </widget>
     </widget>

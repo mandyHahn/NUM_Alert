@@ -7,9 +7,6 @@ from settings import showToast
 import os
 import threading
 
-# Needed installations:
-# pip install selenium
-
 
 class COVIDAlert:
     # Constructor
