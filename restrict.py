@@ -19,9 +19,7 @@ def find_items(search_path):
 
 
 def kill_unwanted(exe_list):
-    # print(exeList)
     for proc in psutil.process_iter():  # psutil.processor_iter() created iterator for the for_each loop to go through
-        # print(proc.name())            # contains every current running process with its name and PID
         for i in exe_list:               # for every .exe to kill
             if proc.name() == i:        # if the process name matches the kill .exe
                 os.kill(proc.pid, signal.SIGTERM)   # terminate teh program
