@@ -1,30 +1,74 @@
+from sched import scheduler
+
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from DelayAlert import DelayAlert
 from TimedAlert import TimedAlert
+from RestrictTimer import RestrictTimer
 import datetime
+from restrict import *
 
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+
         uic.loadUi('GUI.ui', self)
         MainWindow.delayAlerts = []
         MainWindow.timedAlerts = []
         MainWindow.numDelayAlerts = 0
         MainWindow.numTimedAlerts = 0
 
-    def delete_alert(self, timerList, guiList, index):
+        self.selectedDelayRow = -1
+        self.selectedTimedRow = -1
+        self.selectedRestrictRow = -1
+        self.selectedAppRow = -1
+
+        MainWindow.namesList = []  # ordered list will be used to keep track of all the apps. will be populated via InstalledApp.name
+        MainWindow.toKill = []  # combobox selected items will go into this list
+
+        MainWindow.exeDict = {}  # hashmap of name->list of executables
+        MainWindow.exeList = []  # after toShutdown list was given, merge all lists matching items in toShutdown
+
+        MainWindow.schedule = sched.scheduler(time.time, time.sleep)
+        # MainWindow.restrictTime = None
+        self.restrictTime = None
+
+        setup_apps(self.namesList, self.exeDict)
+
+        self.namesList.sort()
+
+        for name in self.namesList:
+            self.applicationsList.addItem(name)
+
+    def delete_alert(self, timerList, guiList, index, totalNum):
+        if index < 0 or index >= totalNum:
+            raise IndexError("no selected element")
+
+        guiList.takeItem(index)
         timerList[index].timer.cancel()
         del timerList[index]
-        guiList.takeItem(index)
+
+
 
     def delete_selected_timedAlert(self):
-        self.delete_alert(self.timedAlerts, self.currentTimedAlertsList, self.currentTimedAlertsList.currentRow())
-        self.numTimedAlerts -= 1
+        try:
+            self.delete_alert(self.timedAlerts, self.currentTimedAlertsList, self.selectedTimedRow, self.numTimedAlerts)
+            self.numTimedAlerts -= 1
+            if self.selectedTimedRow == self.numTimedAlerts:
+                self.selectedTimedRow -= 1
+
+        except IndexError:
+            print("indexError timed")
 
     def delete_selected_delayAlert(self):
-        self.delete_alert(self.delayAlerts, self.currentDelayAlertsList, self.currentDelayAlertsList.currentRow())
-        self.numDelayAlerts -= 1
+        try:
+            self.delete_alert(self.delayAlerts, self.currentDelayAlertsList, self.selectedDelayRow, self.numDelayAlerts)
+            self.numDelayAlerts -= 1
+            if self.selectedDelayRow == self.numDelayAlerts:
+                self.selectedDelayRow -= 1
+
+        except IndexError:
+            print("indexError delay")
 
     def add_delayAlert(self):
         self.delayAlerts.append(
@@ -35,6 +79,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                                self.customMessageField.text() + '" (' +
                                                str(self.frequencyDurationSpinbox.value()) + ' mins)')
         self.numDelayAlerts += 1
+        self.currentDelayAlertsList.setCurrentRow(-1)
 
     # timeParser - Parses military time and returns it as regular time
     # hours - The hour to parse (0-23)
@@ -66,11 +111,88 @@ class MainWindow(QtWidgets.QMainWindow):
                                                self.customMessageField_2.text() + '" (' +
                                                self.timeParser(enteredHour, enteredMinute) + ')')
         self.numTimedAlerts += 1
+        self.currentTimedAlertsList.setCurrentRow(-1)
+
+
+
+    def add_to_banned(self):
+        numRows = self.applicationsList.count()
+        try:
+            if self.selectedAppRow < 0 or self.selectedAppRow >= numRows:
+                raise IndexError("selection out of bounds")
+
+            itemName = self.applicationsList.takeItem( self.selectedAppRow ).text()
+            self.bannedApplicationsList.addItem(itemName)
+            self.toKill.append(itemName)
+            self.exeList += self.exeDict[itemName]
+
+            if self.selectedAppRow == numRows-1:
+                self.selectedAppRow -= 1
+
+        except IndexError:
+            print("app indexerror") # TODO make all error messages pass
+
+
+    def unban_selected(self):
+        numRows = self.bannedApplicationsList.count()
+        try:
+            if self.selectedRestrictRow < 0 or self.selectedRestrictRow >= numRows:
+                raise IndexError("selection out of bounds")
+
+            itemName = self.bannedApplicationsList.takeItem(self.selectedRestrictRow).text()
+            self.toKill.remove(itemName)
+            for item in self.exeDict[itemName]:
+                self.exeList.remove(item)
+            self.applicationsList.addItem(itemName)
+
+            if self.selectedRestrictRow == numRows-1:
+                self.selectedRestrictRow -= 1
+
+        except IndexError:
+            print("banned indexerror")
+
 
     def closeEvent(self, event):
-        for t in self.alerts:
+        for t in self.delayAlerts:
+            t.timer.cancel()
+        for t in self.timedAlerts:
             t.timer.cancel()
         event.accept()  # let the window close
+
+    def set_selected_delayAlert(self):
+        self.selectedDelayRow = self.currentDelayAlertsList.currentRow()
+        print(self.selectedDelayRow)
+
+    def set_selected_timedAlert(self):
+        self.selectedTimedRow = self.currentTimedAlertsList.currentRow()
+
+    def set_selected_app(self):
+        self.selectedAppRow = self.applicationsList.currentRow()
+
+    def set_selected_restriction(self):
+        self.selectedRestrictRow = self.bannedApplicationsList.currentRow()
+
+
+    def focus_toggle(self):
+        if self.focusModeCheckbox.isChecked():
+
+            self.restrictTime = RestrictTimer(60, self.exeList)
+            print("here as well")
+            # self.
+            # print(self.toKill)
+            # print("Here1")
+            # for i in self.toKill:  # not mandatory, but performance improvement
+            #     self.exeList += self.exeDict[i]       # given toKill list, merge matching dict entries, O-notation is smaller
+            # print("Here2")
+            # print(self.exeList)
+
+
+            # self.schedEvent = self.schedule.enter(60, 1, kill_unwanted, (self.schedule, self.exeList ))
+            # self.schedule.run()
+
+        else:
+            self.restrictTime.timer.cancel()
+
 
 
 if __name__ == '__main__':

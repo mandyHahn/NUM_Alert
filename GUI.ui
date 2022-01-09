@@ -210,7 +210,7 @@
         <number>1</number>
        </property>
        <property name="maximum">
-        <number>60</number>
+        <number>59</number>
        </property>
       </widget>
      </widget>
@@ -228,6 +228,9 @@
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
+      </property>
+      <property name="modelColumn">
+       <number>0</number>
       </property>
      </widget>
      <widget class="QLabel" name="currentAlertsLabel">
@@ -443,7 +446,7 @@
         <number>1</number>
        </property>
        <property name="maximum">
-        <number>60</number>
+        <number>59</number>
        </property>
       </widget>
       <widget class="QTimeEdit" name="selectTimeBox">
@@ -499,8 +502,11 @@
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
-     <widget class="QPushButton" name="deleteDelayAlertButton_2">
+     <widget class="QPushButton" name="addToBannedButton">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -542,7 +548,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="deleteDelayAlertButton_3">
+     <widget class="QPushButton" name="unbanSelectedButton">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -555,12 +561,12 @@
        <string>Unban Selected</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="focusModeCheckbox">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>390</y>
-        <width>131</width>
+        <width>381</width>
         <height>16</height>
        </rect>
       </property>
@@ -571,8 +577,285 @@
        <number>4</number>
       </property>
       <property name="text">
-       <string>Focus Mode </string>
+       <string>Focus Mode (checks if banned applications are open)</string>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Extras</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>401</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>COVID-19 Alerts</string>
+      </property>
+      <widget class="QRadioButton" name="radioButton">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>171</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Recieve COVID case alerts</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>70</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>22</number>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtBottom</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>USA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>India</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Brazil</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>UK</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>France</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Russia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Turkey</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Germany</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Spain</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Argentina</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Iran</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Colombia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Indonesia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Poland</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mexico</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ukraine</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>South Africa</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Netherlands</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Philippines</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Malaysia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Czechia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Canada</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Thailand</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Belgium</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Iraq</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vietnam</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Romania</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Chile</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japan</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Notify every:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>50</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Country:</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBox">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>70</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="suffix">
+        <string> hours</string>
+       </property>
+       <property name="prefix">
+        <string/>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>24</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="notiDurationLabel_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>191</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Notification duration (seconds)</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="notificationDurationSpinbox_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>130</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>59</number>
+       </property>
+       <property name="value">
+        <number>15</number>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -644,11 +927,130 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>addToBannedButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>add_to_banned()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>355</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>-11</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>unbanSelectedButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>unban_selected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>323</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>113</x>
+     <y>-7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>focusModeCheckbox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>focus_toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>421</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>134</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>currentDelayAlertsList</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>set_selected_delayAlert()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>117</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>-4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>currentTimedAlertsList</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>set_selected_timedAlert()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>188</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-4</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>applicationsList</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>set_selected_app()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>163</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>-3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bannedApplicationsList</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>set_selected_restriction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>66</x>
+     <y>310</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add_delayAlert()</slot>
   <slot>delete_selected_delayAlert()</slot>
   <slot>add_timedAlert()</slot>
   <slot>delete_selected_timedAlert()</slot>
+  <slot>add_to_banned()</slot>
+  <slot>unban_selected()</slot>
+  <slot>focus_toggle()</slot>
+  <slot>set_selected_delayAlert()</slot>
+  <slot>set_selected_timedAlert()</slot>
+  <slot>set_selected_app()</slot>
+  <slot>set_selected_restriction()</slot>
  </slots>
 </ui>
