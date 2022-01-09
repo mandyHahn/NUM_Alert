@@ -1,45 +1,51 @@
-from sched import scheduler
+from PyQt5 import QtWidgets, uic
 
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from COVIDAlert import COVIDAlert
 from DelayAlert import DelayAlert
 from TimedAlert import TimedAlert
 from RestrictTimer import RestrictTimer
-import datetime
 from restrict import *
+import datetime
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self):                         # initialize the GUI
         super(MainWindow, self).__init__()
-
         uic.loadUi('GUI.ui', self)
-        MainWindow.delayAlerts = []
-        MainWindow.timedAlerts = []
-        MainWindow.numDelayAlerts = 0
-        MainWindow.numTimedAlerts = 0
 
+        MainWindow.delayAlerts = []     # list of alerts of type delay
+        MainWindow.timedAlerts = []     # list of alerts of type timed
+        MainWindow.numDelayAlerts = 0   # the total number of delayed alerts
+        MainWindow.numTimedAlerts = 0   # the total number of timed alerts
+
+        # the following four lines keep track of the currently selected line for each of the list widgets in the GUI
+        # this allows the selected line to be set to -1
         self.selectedDelayRow = -1
         self.selectedTimedRow = -1
         self.selectedRestrictRow = -1
         self.selectedAppRow = -1
 
-        MainWindow.namesList = []  # ordered list will be used to keep track of all the apps. will be populated via InstalledApp.name
-        MainWindow.toKill = []  # combobox selected items will go into this list
+        MainWindow.namesList = []   # ordered list will be used to keep track of all the apps. will be populated via InstalledApp.name
+        MainWindow.toKill = []      # combobox selected items will go into this list
 
         MainWindow.exeDict = {}  # hashmap of name->list of executables
         MainWindow.exeList = []  # after toShutdown list was given, merge all lists matching items in toShutdown
 
-        MainWindow.schedule = sched.scheduler(time.time, time.sleep)
-        # MainWindow.restrictTime = None
-        self.restrictTime = None
+        self.restrictTime = None    # local instance of the restrict timer (checks if any banned applications are opened every minute)
+        self.covidTimer = None      # local instance of the covid cases timer (gives covid case data alerts)
 
-        setup_apps(self.namesList, self.exeDict)
+        setup_apps(self.namesList, self.exeDict)    # load all applications in the user's system that can be banned
 
-        self.namesList.sort()
+        self.namesList.sort()           # sort the applications so they display alphabetically
 
-        for name in self.namesList:
+        for name in self.namesList:     # add each application to the GUI list
             self.applicationsList.addItem(name)
 
+    # delete_alert: deletes the alert at the given index from all lists
+    # timerList - the local instance list to delete the alert from
+    # guiList - the displayed gui list widget to delete the alert from
+    # index - the index of the alert to be deleted
+    # totalNum - the total number of alerts in both lists (for error checking)
     def delete_alert(self, timerList, guiList, index, totalNum):
         if index < 0 or index >= totalNum:
             raise IndexError("no selected element")
@@ -47,8 +53,6 @@ class MainWindow(QtWidgets.QMainWindow):
         guiList.takeItem(index)
         timerList[index].timer.cancel()
         del timerList[index]
-
-
 
     def delete_selected_timedAlert(self):
         try:
@@ -113,8 +117,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.numTimedAlerts += 1
         self.currentTimedAlertsList.setCurrentRow(-1)
 
-
-
     def add_to_banned(self):
         numRows = self.applicationsList.count()
         try:
@@ -131,7 +133,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         except IndexError:
             print("app indexerror") # TODO make all error messages pass
-
 
     def unban_selected(self):
         numRows = self.bannedApplicationsList.count()
@@ -151,7 +152,6 @@ class MainWindow(QtWidgets.QMainWindow):
         except IndexError:
             print("banned indexerror")
 
-
     def closeEvent(self, event):
         for t in self.delayAlerts:
             t.timer.cancel()
@@ -159,6 +159,8 @@ class MainWindow(QtWidgets.QMainWindow):
             t.timer.cancel()
         if self.focusModeCheckbox.isChecked():
             self.restrictTime.timer.cancel()
+        if self.covidAlertsRadiobutton.isChecked():
+            self.covidTimer.timer.cancel()
 
         event.accept()  # let the window close
 
@@ -180,6 +182,25 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             self.restrictTime.timer.cancel()
 
+    def covid_toggle(self):
+        if self.covidAlertsRadiobutton.isChecked():
+            self.covidTimer = COVIDAlert(self.covidNotificationDurationSpinbox.value(),
+                                         self.covidNotifyFrequencySpinbox.value()) # TODO change to hours
+            self.covidTimer.createTimer(self.covidCountryCombobox.currentText())
+        else:
+            self.covidTimer.timer.cancel()
+
+    def covid_country_changed(self):
+        if self.covidAlertsRadiobutton.isChecked():
+            self.covidTimer.timer.cancel()
+            self.covidTimer.createTimer(self.covidCountryCombobox.currentText())
+
+    def covid_notify_change(self):
+        if self.covidAlertsRadiobutton.isChecked():
+            self.covidTimer.timer.cancel()
+            self.covidTimer.notificationDuration = self.covidNotificationDurationSpinbox.value()
+            self.covidTimer.timeBetweenAlert = self.covidNotifyFrequencySpinbox.value()
+            self.covidTimer.createTimer(self.covidCountryCombobox.currentText())
 
 
 if __name__ == '__main__':
@@ -190,3 +211,8 @@ if __name__ == '__main__':
     window.show()
 
     sys.exit(app.exec_())
+
+
+
+
+

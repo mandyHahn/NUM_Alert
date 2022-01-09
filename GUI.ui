@@ -589,7 +589,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>10</y>
         <width>401</width>
         <height>171</height>
        </rect>
@@ -597,20 +597,20 @@
       <property name="title">
        <string>COVID-19 Alerts</string>
       </property>
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="covidAlertsRadiobutton">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>171</width>
+         <width>371</width>
          <height>17</height>
         </rect>
        </property>
        <property name="text">
-        <string>Recieve COVID case alerts</string>
+        <string>Recieve COVID case alerts (may take a second to load data once clicked)</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="covidCountryCombobox">
        <property name="geometry">
         <rect>
          <x>220</x>
@@ -802,7 +802,7 @@
         <string>Country:</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="covidNotifyFrequencySpinbox">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -837,7 +837,7 @@
         <string>Notification duration (seconds)</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="notificationDurationSpinbox_3">
+      <widget class="QSpinBox" name="covidNotificationDurationSpinbox">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -1039,6 +1039,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>covidAlertsRadiobutton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>covidCountryCombobox</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_country_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-4</x>
+     <y>107</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>covidNotifyFrequencySpinbox</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_notify_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>124</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-5</x>
+     <y>157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>covidNotificationDurationSpinbox</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>covid_notify_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>add_delayAlert()</slot>
@@ -1052,5 +1116,8 @@
   <slot>set_selected_timedAlert()</slot>
   <slot>set_selected_app()</slot>
   <slot>set_selected_restriction()</slot>
+  <slot>covid_toggle()</slot>
+  <slot>covid_country_changed()</slot>
+  <slot>covid_notify_change()</slot>
  </slots>
 </ui>
