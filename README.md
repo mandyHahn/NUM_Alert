@@ -14,7 +14,7 @@ Setup:
     1. Open Google Chrome
     2. Click on the 3 dots in the top-right corner of the screen
     3. In the help subsection, click on the `About Google Chrome`
-    4. If the version is not 97.0 onward, click the update button.<br>
+    4. If the version is not 97.0 onward, click the update button.<br><br>
 Install following library dependencies via `pip install ___`, where ___ are the libraries mentioned below:
   - PyQt5
   - selenium
@@ -24,7 +24,8 @@ Install following library dependencies via `pip install ___`, where ___ are the 
 
   To launch the app (assuming you are in the directory containing all the files)
   > py main.py
-
+  
+  Or use your native Python IDE and run the script there (Via either Shift+F10 or pressing the `Run` Button)
 
 Using Each Aspect:
 Recurring Alerts
