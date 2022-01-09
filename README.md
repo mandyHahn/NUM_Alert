@@ -9,25 +9,26 @@ There are 4 categories, "Recurring Alerts", "Timed Alerts", "Restrictions", and 
 "Restrictions" are restrictions you can place on your applications. This will be checked every minute.
 "Extras" are extras for the program (currently only a COVID case counter)
 
-Setup:<br>
+<br>**Setup:**<br>
  - ***Make sure Chromium driver is updated to the version 97.0 or later.*** To do so:
     1. Open Google Chrome
     2. Click on the 3 dots in the top-right corner of the screen
     3. In the help subsection, click on the `About Google Chrome`
     4. If the version is not 97.0 onward, click the update button.<br><br>
-***Install following library dependencies via `pip install ___`,*** where ___ are the libraries mentioned below:
+- ***Install following library dependencies via `pip install ___`,*** where ___ are the libraries mentioned below:
   - PyQt5
   - selenium
   - psutil
   - winapps
   - win10toast
 
-  To launch the app (assuming you are in the directory containing all the files)
-  > py main.py
-  
-  Or use your native Python IDE and run the script there (Via either Shift+F10 or pressing the `Run` Button)
+To launch the app (assuming you are in the directory containing all the files)
+> py main.py
 
-**Using Each Aspect:**<br><br>
+Or use your native Python IDE and run the script there (Via either Shift+F10 or pressing the `Run` Button)
+
+
+<br>**Using Each Aspect:**<br><br>
 *Recurring Alerts*
  - Alert type: The type of alert. If the type of alert wanted is not on the list, press "custom".
  - Frequency Duration: The amount of time, in minutes, that the notification will appear.
@@ -54,19 +55,19 @@ Setup:<br>
  All information comes from https://www.worldometers.info/coronavirus/
 
 
-**Limitations/Restrictions:**<br>
-Windows 10 Exclusive due to how the notifications are processed.<br>
-Notification duration is limited not only by the input, but by what the limit is in the user settings.
- - In Windows 10, this can be changed in settings -> Ease of Access -> Show notifications for<br><br>
-If the installation path does not exist, then the program can not be prevented from being closed.
- - An example program is steam, however steam applications can regularly be closed
-Depending on the selected programs, unsaved changes will be ignored. The user will not be prompted to save beforehand.<br><br>
-Some programs, in their install path, have extra .exe files, such as UnityCrashHandler.exe.
- - If another unrelated app also uses UnityCrashHandler, it will also be closed.<br><br>
-Upon adding an item to the "banned" list, it will not automatically be closed. "Focus mode" must be turned on.
-Restricted programs will only be shut down on a timer of 1 minute to prevent resource hogging. In theory, the program may still be opened.
-The amount of "notification time" MAY NOT exceed "time". Meaning, you CAN NOT create 2 alerts that happen every minute that each last 59 seconds without breaking the program.
-The COVID cases runs in headless mode, which has been known to be unreliable.
-Chrome Version 97.0.4692.71 (the most recent version) is needed.
- - To update, open Google Chrome. Press the 3 buttons in the top right of the screen. Click "help", then "About Google Chrome". The update should automatically start installing if needed.
+<br>**Limitations/Restrictions:**<br>
+- Windows 10 Exclusive due to how the notifications are processed.<br>
+- Notification duration is limited not only by the input, but by what the limit is in the user settings.
+  - In Windows 10, this can be changed in settings -> Ease of Access -> Show notifications for
+- If the installation path does not exist, then the program can not be prevented from being closed.
+  - An example program is steam, however steam applications can regularly be closed
+Depending on the selected programs, unsaved changes will be ignored. The user will not be prompted to save beforehand.
+- Some programs, in their install path, have extra .exe files, such as UnityCrashHandler.exe.
+  - If another unrelated app also uses UnityCrashHandler, it will also be closed.
+- Upon adding an item to the "banned" list, it will not automatically be closed. "Focus mode" must be turned on.
+- Restricted programs will only be shut down on a timer of 1 minute to prevent resource hogging. In theory, the program may still be opened.
+- The amount of "notification time" MAY NOT exceed "time". Meaning, you CAN NOT create 2 alerts that happen every minute that each last 59 seconds without breaking the program.
+- The COVID cases runs in headless mode, which has been known to be unreliable.
+- Chrome Version 97.0.4692.71 (the most recent version) is needed.
+  - To update, open Google Chrome. Press the 3 buttons in the top right of the screen. Click "help", then "About Google Chrome". The update should automatically start installing if needed.
 
