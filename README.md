@@ -71,3 +71,20 @@ Depending on the selected programs, unsaved changes will be ignored. The user wi
 - Chrome Version 97.0.4692.71 (the most recent version) is needed.
   - To update, open Google Chrome. Press the 3 buttons in the top right of the screen. Click "help", then "About Google Chrome". The update should automatically start installing if needed.
 
+
+<br>***This project originated on GitLab and was created for the Hack the Job hackathon***
+
+<br>**Contributions**<br>
+- Uladzislau Kaparykha
+  - restrict.py
+  - RestrictTimer.py
+- Amanda Hahn
+  - GUI.ui
+  - gui.py
+  - main.py 
+- Nicholas Waller
+  - Alert.py
+  - COVIDAlert.py
+  - DelayAlert.py
+  - TimedAlert.py
+  - settings.py
