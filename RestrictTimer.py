@@ -15,6 +15,10 @@ class RestrictTimer:
 
     # Perform the event and create a new timer
     def performEvent(self, exeList):
+        # call the event
         kill_unwanted(exeList)
+        # initialize the timer that will run once every timeBetweenInterval seconds, and then calls performEvent
+        # which calls function kill_unwanted, and supply event with exeList
         self.timer = threading.Timer(self.timeBetweenInterval, self.performEvent, args=[exeList])
+        # start the initialized timer
         self.timer.start()
