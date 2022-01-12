@@ -1,13 +1,13 @@
-Contributors: Uladzislau Kaparykha, Amanda Hahn, Nicholas Waller<br>
-Hackathon Team Name: N.U.M
+# Hackathon Team Name: N.U.M
+### Contributors: Uladzislau Kaparykha, Amanda Hahn, Nicholas Waller<br>
 
 General Purpose:
-The general purpose of this program is to keep workers more on task during their work day.
-There are 4 categories, "Recurring Alerts", "Timed Alerts", "Restrictions", and "Extras"
-"Recurring Alerts" are alerts that happen every given period of time.
-"Timed Alerts" are alerts that happen once a day at a given time
-"Restrictions" are restrictions you can place on your applications. This will be checked every minute.
-"Extras" are extras for the program (currently only a COVID case counter)
+The general purpose of this program is to keep workers more on task during their work day.<br>
+There are 4 categories, "Recurring Alerts", "Timed Alerts", "Restrictions", and "Extras"<br>
+"Recurring Alerts" are alerts that happen every given period of time.<br>
+"Timed Alerts" are alerts that happen once a day at a given time<br>
+"Restrictions" are restrictions you can place on your applications. This will be checked every minute.<br>
+"Extras" are extras for the program (currently only a COVID case counter)<br>
 
 <br>**Setup:**<br>
  - ***Make sure Chromium driver is updated to the version 97.0 or later.*** To do so:
