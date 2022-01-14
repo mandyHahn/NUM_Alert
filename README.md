@@ -11,7 +11,7 @@ There are 4 categories, "Recurring Alerts", "Timed Alerts", "Restrictions", and 
 "Restrictions" are restrictions you can place on your applications. This will be checked every minute.<br>
 "Extras" are extras for the program (currently only a COVID case counter)<br>
 
-<br>**Setup:**<br>
+### Setup:
  - ***Make sure Chromium driver is updated to the version 97.0 or later.*** To do so:
     1. Open Google Chrome
     2. Click on the 3 dots in the top-right corner of the screen
@@ -30,7 +30,7 @@ To launch the app (assuming you are in the directory containing all the files)
 Or use your native Python IDE and run the script there (Via either Shift+F10 or pressing the `Run` Button)
 
 
-<br>**Using Each Aspect:**<br><br>
+### Using Each Aspect:
 *Recurring Alerts*
  - Alert type: The type of alert. If the type of alert wanted is not on the list, press "custom".
  - Frequency Duration: The amount of time, in minutes, that the notification will appear.
@@ -57,7 +57,7 @@ Or use your native Python IDE and run the script there (Via either Shift+F10 or 
  All information comes from https://www.worldometers.info/coronavirus/
 
 
-<br>**Limitations/Restrictions:**<br>
+### Limitations/Restrictions:
 - Windows 10 Exclusive due to how the notifications are processed.<br>
 - Notification duration is limited not only by the input, but by what the limit is in the user settings.
   - In Windows 10, this can be changed in settings -> Ease of Access -> Show notifications for
@@ -73,7 +73,7 @@ Depending on the selected programs, unsaved changes will be ignored. The user wi
 - Chrome Version 97.0.4692.71 (the most recent version) is needed.
   - To update, open Google Chrome. Press the 3 buttons in the top right of the screen. Click "help", then "About Google Chrome". The update should automatically start installing if needed.
 
-<br>**Contributions**<br>
+### Contributions
 - Uladzislau Kaparykha
   - restrict.py
   - RestrictTimer.py
